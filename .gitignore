@@ -1,0 +1,16 @@
+# Derleme çıktıları
+out/
+*.class
+sources.txt
+
+# IDE dosyaları
+.idea/
+*.iml
+.vscode/
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Word geçici dosyaları
+~$*.docx
