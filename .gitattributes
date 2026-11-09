@@ -1,0 +1,8 @@
+# Metin dosyalarının satır sonlarını depoda LF olarak sakla
+* text=auto
+
+# Unix betikleri her ortamda LF ile çıkmalı
+*.sh text eol=lf
+
+# Windows betikleri her ortamda CRLF ile çıkmalı
+*.bat text eol=crlf
