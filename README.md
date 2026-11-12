@@ -71,20 +71,14 @@ run.bat
 sh run.sh
 ```
 
-**Elle derleme ve çalıştırma (Linux, macOS veya Git Bash):**
+**Elle derleme ve çalıştırma:**
 
 ```bash
-javac -encoding UTF-8 --release 17 -d out $(find src -name "*.java")
-java -cp out webserver.Main
-```
-
-**Elle derleme ve çalıştırma (Windows komut istemi):**
-
-```bat
-dir /s /b src\*.java > sources.txt
-javac -encoding UTF-8 --release 17 -d out @sources.txt
+javac -encoding UTF-8 --release 17 -d out -sourcepath src src/webserver/Main.java
 java -Dstdout.encoding=UTF-8 -cp out webserver.Main
 ```
+
+`-sourcepath src` sayesinde derleyici `Main.java`'dan başlayarak kullanılan tüm sınıfları kendisi bulup derler. Komut Windows, Linux ve macOS'ta aynı şekilde çalışır.
 
 Sunucu başladıktan sonra tarayıcınızda şu adresi açın:
 

@@ -3,5 +3,6 @@ set -e
 cd "$(dirname "$0")"
 rm -rf out
 mkdir -p out
-javac -encoding UTF-8 --release 17 -d out $(find src -name "*.java")
+# Main.java'dan başlayarak src altındaki tüm sınıflar derlenir.
+javac -encoding UTF-8 --release 17 -d out -sourcepath src src/webserver/Main.java
 java -cp out webserver.Main
