@@ -8,6 +8,16 @@ Sunucu **1989** numaralı portu dinler. Herhangi bir web tarayıcısıyla bağla
 ![Bağımlılık](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-yok-brightgreen)
 ![Port](https://img.shields.io/badge/port-1989-blue)
 
+| | |
+|---|---|
+| **Öğrenci** | Yağız Çınar Özbakır |
+| **Öğrenci No** | 1250505057 |
+| **Bölüm** | Yazılım Mühendisliği, Kırklareli Üniversitesi |
+| **Ders** | Nesneye Yönelik Programlama |
+| **Ödev** | Java ve Socket Programlama ile Basit Web Sunucusu |
+
+![Sunucunun tarayıcıdaki çıktısı](docs/ekran-goruntusu.png)
+
 ---
 
 ## İçindekiler
@@ -20,6 +30,7 @@ Sunucu **1989** numaralı portu dinler. Herhangi bir web tarayıcısıyla bağla
 - [SOLID Prensiplerinin Uygulanması](#solid-prensiplerinin-uygulanması)
 - [Kendi Bilgilerinizi Girme](#kendi-bilgilerinizi-girme)
 - [Test](#test)
+- [Lisans](#lisans)
 
 ---
 
@@ -29,7 +40,9 @@ Sunucu **1989** numaralı portu dinler. Herhangi bir web tarayıcısıyla bağla
 - `ServerSocket` ile 1989 numaralı portun dinlenmesi
 - İş parçacığı havuzu (`ExecutorService`) sayesinde aynı anda birden fazla istemciye hizmet
 - İsteğin ayrıştırılması (istek satırı + başlıklar) ve standartlara uygun cevap üretilmesi
+- `GET` ve `HEAD` metotları; diğer metotlar için `405 Method Not Allowed`
 - `200 OK`, `400 Bad Request`, `404 Not Found` ve `405 Method Not Allowed` durum kodları
+- 5 saniye boyunca veri göndermeyen bağlantıların zaman aşımıyla kapatılması
 - UTF-8 desteği sayesinde Türkçe karakterlerin doğru görüntülenmesi
 - SOLID prensiplerine göre katmanlara ayrılmış nesne yönelimli tasarım
 
@@ -58,11 +71,19 @@ run.bat
 sh run.sh
 ```
 
-**Elle derleme ve çalıştırma:**
+**Elle derleme ve çalıştırma (Linux, macOS veya Git Bash):**
 
 ```bash
-javac -encoding UTF-8 -d out $(find src -name "*.java")
+javac -encoding UTF-8 --release 17 -d out $(find src -name "*.java")
 java -cp out webserver.Main
+```
+
+**Elle derleme ve çalıştırma (Windows komut istemi):**
+
+```bat
+dir /s /b src\*.java > sources.txt
+javac -encoding UTF-8 --release 17 -d out @sources.txt
+java -Dstdout.encoding=UTF-8 -cp out webserver.Main
 ```
 
 Sunucu başladıktan sonra tarayıcınızda şu adresi açın:
@@ -96,7 +117,7 @@ src/webserver/
 ├── model/
 │   ├── StudentProfile.java           # Öğrenci bilgisi (record)
 │   ├── ProfileRepository.java        # Bilgi kaynağı arayüzü
-│   └── InMemoryProfileRepository.java# Bilgiyi kod içinde tutan uygulama
+│   └── InMemoryProfileRepository.java  # Bilgiyi kod içinde tutan uygulama
 └── view/
     ├── PageRenderer.java             # HTML üretici arayüzü
     └── BiographyPageRenderer.java    # Biyografi sayfasının HTML/CSS çıktısı
@@ -153,8 +174,15 @@ Tarayıcı dışında `curl` ile de test edilebilir:
 
 ```bash
 curl -i http://localhost:1989/          # 200 OK + biyografi sayfası
+curl -I http://localhost:1989/          # HEAD isteği: yalnızca başlıklar
 curl -i http://localhost:1989/yok       # 404 Not Found
 curl -i -X POST http://localhost:1989/  # 405 Method Not Allowed
+```
+
+Sunucu her isteği konsola şu biçimde kaydeder:
+
+```
+[127.0.0.1:52344] GET / -> 200
 ```
 
 ## Lisans

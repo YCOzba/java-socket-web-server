@@ -33,7 +33,9 @@ public final class BiographyPageRenderer implements PageRenderer {
                     body {
                       margin: 0;
                       padding: 40px 16px;
-                      background: linear-gradient(135deg, #1e3a8a 0%%, #7c3aed 100%%);
+                      min-height: 100vh;
+                      box-sizing: border-box;
+                      background: linear-gradient(135deg, #1e3a8a 0%%, #7c3aed 100%%) fixed;
                       font-family: Georgia, 'Times New Roman', serif;
                       color: #1f2937;
                     }
