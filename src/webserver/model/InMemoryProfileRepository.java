@@ -24,9 +24,9 @@ public final class InMemoryProfileRepository implements ProfileRepository {
                             + "sınıflarıyla çalışan bir web sunucusu yazdım. Şu an okuduğunuz sayfa da "
                             + "bu sunucu tarafından 1989 numaralı porttan gönderiliyor."),
             List.of(
-                    "Algoritmalar ve veri yapıları",
+                    "Hesaplama kuramı ve otomatlar",
+                    "Algoritma analizi ve karmaşıklık",
                     "Programlama dillerinin teorisi",
-                    "Nesne yönelimli tasarım ve SOLID prensipleri",
                     "Go ile programlama"));
 
     @Override
